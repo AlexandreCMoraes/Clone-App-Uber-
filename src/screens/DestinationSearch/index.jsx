@@ -4,6 +4,9 @@ import { View, TextInput, SafeAreaView } from "react-native";
 
 import styles from "./styles";
 
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+
+
 const DestinationSearch = (props) => {
   // Criando var para guardar a info digitada e ser usada depois dos TextInput
   const [fromText, setFromText] = useState("");
@@ -28,6 +31,18 @@ const DestinationSearch = (props) => {
           style={styles.textInput}
           placeholder="Where to?"
         />
+
+        <GooglePlacesAutocomplete
+          placeholder="Search"
+          onPress={(data, details = null) => {
+            // 'details' is provided when fetchDetails = true
+            console.log(data, details);
+          }}
+          query={{
+            key: "AIzaSyBMiQ55Xu9v0REUJCaIVU140-5FW_MWfSE",
+            language: "en",
+          }}
+        />
       </View>
     </SafeAreaView>
   );
@@ -35,4 +50,5 @@ const DestinationSearch = (props) => {
 
 export default DestinationSearch;
 
-//TODO video parado em 1:27:17
+//TODO video com info do gooogle api entre 1:27:17 e 1:30:00
+//TODO AIzaSyBMiQ55Xu9v0REUJCaIVU140-5FW_MWfSE
