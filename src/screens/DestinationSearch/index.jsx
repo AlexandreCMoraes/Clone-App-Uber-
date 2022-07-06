@@ -1,43 +1,61 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // SafeAreaView serve para aparelhos que tem a parte chamada de "notch", parte da camera frontal (Apple, xiaomi)
 import { View, TextInput, SafeAreaView } from "react-native";
 
 import styles from "./styles";
 
-import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
-
+import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 
 const DestinationSearch = (props) => {
-  // Criando var para guardar a info digitada e ser usada depois dos TextInput
-  const [fromText, setFromText] = useState("");
-  const [destinationText, setDestinationText] = useState("");
+  // Criando var para guardar a info digitada e ser usada depois dos TextInput(foi removida ao utilizar api)
+  // const [fromText, setFromText] = useState("");
+  // const [destinationText, setDestinationText] = useState("");
+
+  const [originPlace, setOriginPlace] = useState(null);
+  const [destinationPlace, setDestinationPlace] = useState(null);
+
+  // Checando se ambos estao
+  useEffect(() => {
+    console.warn("useEffect foi chamado");
+    if (originPlace && destinationPlace) {
+      console.warn("Redirect to results");
+    }
+  }, [originPlace, destinationPlace]);
 
   return (
     // SafeAreaView serve para aparelhos que tem a parte chamada de "notch", parte da camera frontal (Apple, xiaomi)
     <SafeAreaView>
       <View style={styles.container}>
-        {/* Escrever na area */}
-        <TextInput
-          // two-way-data-bind
-          value={fromText}
-          onChangeText={setFromText}
-          style={styles.textInput}
-          placeholder="From"
-        />
-        <TextInput
-          // two-way-data-bind
-          value={destinationText}
-          onChangeText={setDestinationText}
-          style={styles.textInput}
-          placeholder="Where to?"
-        />
-
+        {/* Uso da API Google Places AutoComplete */}
         <GooglePlacesAutocomplete
-          placeholder="Search"
+          placeholder="From"
           onPress={(data, details = null) => {
             // 'details' is provided when fetchDetails = true
+            setOriginPlace({ data, details });
             console.log(data, details);
           }}
+          styles={{
+            textInput: styles.textInput,
+          }}
+          fetchDetails
+          query={{
+            key: "AIzaSyCevJFn6GS3QIR2-u05AiwDcWv-e8ZYpIA",
+            language: "en",
+          }}
+        />
+
+        {/* Uso da API Google Places AutoComplete */}
+        <GooglePlacesAutocomplete
+          placeholder="Where to?"
+          onPress={(data, details = null) => {
+            // 'details' is provided when fetchDetails = true
+            setDestinationPlace({ data, details });
+            console.log(data, details);
+          }}
+          styles={{
+            textInput: styles.textInput,
+          }}
+          fetchDetails
           query={{
             key: "",
             language: "en",
@@ -50,5 +68,5 @@ const DestinationSearch = (props) => {
 
 export default DestinationSearch;
 
-//TODO video com info do gooogle api entre 1:27:17 e 1:30:00
-//TODO AIzaSyBMiQ55Xu9v0REUJCaIVU140-5FW_MWfSE
+//TODO
+//TODO Quando subir, fazer sem enviar key da api google
