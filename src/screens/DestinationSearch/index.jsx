@@ -39,6 +39,7 @@ const DestinationSearch = (props) => {
           }}
           fetchDetails
           query={{
+            // TODO apagar key quando enviar github
             key: "",
             language: "en",
           }}
@@ -57,6 +58,7 @@ const DestinationSearch = (props) => {
           }}
           fetchDetails
           query={{
+            // TODO apagar key quando enviar github
             key: "",
             language: "en",
           }}

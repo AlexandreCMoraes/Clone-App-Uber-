@@ -7,13 +7,15 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 import HomeScreen from './src/screens/HomeScreen';
 import DestinationSearch from './src/screens/DestinationSearch';
+import SearchResults from './src/screens/SearchResults';
 
 export default function App() {
   return (
     <>
       <StatusBar barStyle="dark-content" />
       {/* <HomeScreen /> */}
-      <DestinationSearch />
+      {/* <DestinationSearch /> */}
+      <SearchResults/>
 
     </>
   );
