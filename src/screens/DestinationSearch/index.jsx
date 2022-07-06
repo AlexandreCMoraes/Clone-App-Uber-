@@ -39,7 +39,7 @@ const DestinationSearch = (props) => {
             console.log(data, details);
           }}
           query={{
-            key: "AIzaSyBMiQ55Xu9v0REUJCaIVU140-5FW_MWfSE",
+            key: "",
             language: "en",
           }}
         />
