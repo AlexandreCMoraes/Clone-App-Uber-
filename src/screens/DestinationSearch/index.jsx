@@ -39,7 +39,7 @@ const DestinationSearch = (props) => {
           }}
           fetchDetails
           query={{
-            key: "AIzaSyCevJFn6GS3QIR2-u05AiwDcWv-e8ZYpIA",
+            key: "",
             language: "en",
           }}
         />
