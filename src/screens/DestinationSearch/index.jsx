@@ -69,6 +69,3 @@ const DestinationSearch = (props) => {
 };
 
 export default DestinationSearch;
-
-//TODO
-//TODO Quando subir, fazer sem enviar key da api google
