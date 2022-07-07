@@ -6,7 +6,7 @@ import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 
 import cars from "../../assets/data/cars";
 
-const HomeMap = (props) => {
+const RouteMap = (props) => {
   const getImage = (type) => {
     // type nao sera mais objeto, somente uma string
     if (type === "UberX") {
@@ -72,4 +72,4 @@ const HomeMap = (props) => {
   );
 };
 
-export default HomeMap;
+export default RouteMap;

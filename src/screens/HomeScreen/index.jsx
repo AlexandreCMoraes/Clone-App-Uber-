@@ -1,7 +1,8 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, Dimensions } from "react-native";
 
 // Importando todos os componentes que vão aparecer na HomeScreen
+// aqui utiliza o componente HomeMap, onde fez os mapas com as imagens dos uber
 import HomeMap from "../../components/HomeMap/HomeMap";
 import CovidMsg from "../../components/CovidMsg";
 import HomeSearch from "../../components/HomeSearch";
@@ -10,7 +11,9 @@ import HomeSearch from "../../components/HomeSearch";
 const HomeScreen = (props) => {
   return (
     <View>
-      <HomeMap />
+      <View style={{ height: Dimensions.get("window").height - 420 }}>
+        <HomeMap />
+      </View>
       <CovidMsg />
       <HomeSearch />
     </View>

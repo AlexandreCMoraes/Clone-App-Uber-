@@ -12,9 +12,13 @@ import SearchResults from './src/screens/SearchResults';
 export default function App() {
   return (
     <>
+    
       <StatusBar barStyle="dark-content" />
+      {/* mapa com msg de covid e opcoes de viagem rapida */}
       {/* <HomeScreen /> */}
+      {/* pagina de busca de endereço */}
       {/* <DestinationSearch /> */}
+      {/* mapa com valores do uber */}
       <SearchResults/>
 
     </>
@@ -34,9 +38,11 @@ export default function App() {
 // (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 // {
   
+// TODO colocar a key da api 
 // +  [GMSServices provideAPIKey:@"_YOUR_API_KEY_"]; // add this line using the api key obtained from Google Console
 // ...
-// TODO colocar a key da api 
+
+
 // Add the following to your Podfile above the use_native_modules! function and run pod install in the ios folder:
 
 // # React Native Maps dependencies
