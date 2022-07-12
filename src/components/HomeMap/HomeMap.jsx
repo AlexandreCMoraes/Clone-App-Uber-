@@ -22,8 +22,6 @@ const HomeMap = (props) => {
       style={{ height: "100%", width: "100%" }}
       provider={PROVIDER_GOOGLE}
       initialRegion={{
-        // latitude: 37.78825,
-        // longitude: -122.4324,
         latitudeDelta: 0.0222,
         longitudeDelta: 0.0121,
         //pego do data/cars
@@ -38,36 +36,21 @@ const HomeMap = (props) => {
           coordinate={{ latitude: car.latitude, longitude: car.longitude }}
         >
           <Image
-            style={{ width: 60, height: 60, resizeMode: "contain" }}
+            style={{
+              width: 60,
+              height: 60,
+              resizeMode: "contain",
+              // TODO feito template string para colocar os carros em posições "aleatorias"
+              transform: [
+                {
+                  rotate: `${car.heading}deg`,
+                },
+              ],
+            }}
             source={getImage(car.type)}
           />
         </Marker>
       ))}
-      {/* Nao funcionou com flatList pois é componente do ScrollView */}
-      {/* <FlatList
-        data={cars}
-        renderItem={({ item }) => (
-          <Marker
-            coordinate={{ latitude: item.latitude, longitude: item.longitude }}
-          >
-            <Image
-              style={{ width: 60, height: 60, resizeMode: "contain" }}
-              source={getImage(item.type)}
-            />
-          </Marker>
-        )}
-      /> */}
-
-      {/* <Marker coordinate={{ latitude: 37.78825, longitude: -122.4324 }}>
-        <Image
-          style={{ width: 60, height: 60, resizeMode: "contain" }}
-          source={require("../../assets/images/top-UberX.png")}
-        />
-        {/* nao apareceu a imagem do carro. Sem saber motivo ainda (lembranca: Marker tinha que estar dentro de MapView e nao fora, assim aparece a imagem dentro da tag pai) mas sem sucesso ao redimensionar. Tive que colocar a tag image para estilizar */}
-      {/* image={require("../../assets/images/top-UberX.png")} */}
-      {/* abaixo nao funciona */}
-      {/* image={{uri: '../../assets/images/top-UberX.png'}} */}
-      {/* </Marker> */}
     </MapView>
   );
 };

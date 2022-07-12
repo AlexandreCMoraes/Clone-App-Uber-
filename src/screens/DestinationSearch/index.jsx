@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from "react";
-// SafeAreaView serve para aparelhos que tem a parte chamada de "notch", parte da camera frontal (Apple, xiaomi)
 import { View, TextInput, SafeAreaView } from "react-native";
 
 import styles from "./styles";
 
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
+import PlaceRow from "./PlaceRow";
 
 const DestinationSearch = (props) => {
-  // Criando var para guardar a info digitada e ser usada depois dos TextInput(foi removida ao utilizar api)
-  // const [fromText, setFromText] = useState("");
-  // const [destinationText, setDestinationText] = useState("");
-
   const [originPlace, setOriginPlace] = useState(null);
   const [destinationPlace, setDestinationPlace] = useState(null);
 
@@ -23,7 +19,6 @@ const DestinationSearch = (props) => {
   }, [originPlace, destinationPlace]);
 
   return (
-    // SafeAreaView serve para aparelhos que tem a parte chamada de "notch", parte da camera frontal (Apple, xiaomi)
     <SafeAreaView>
       <View style={styles.container}>
         {/* Uso da API Google Places AutoComplete */}
@@ -34,8 +29,20 @@ const DestinationSearch = (props) => {
             setOriginPlace({ data, details });
             console.log(data, details);
           }}
+          // coocado para ignorar default styles
+          suppressDefaultStyles
           styles={{
             textInput: styles.textInput,
+            container: {
+              position: "absolute",
+              top: 30,
+              left: 10,
+              right: 10,
+            },
+            listView: {
+              position: "absolute",
+              top: 110,
+            },
           }}
           fetchDetails
           query={{
@@ -43,6 +50,8 @@ const DestinationSearch = (props) => {
             key: "",
             language: "en",
           }}
+          // renderizado na lista de busca
+          renderRow={(data) => <PlaceRow data={data} />}
         />
 
         {/* Uso da API Google Places AutoComplete */}
@@ -53,8 +62,15 @@ const DestinationSearch = (props) => {
             setDestinationPlace({ data, details });
             console.log(data, details);
           }}
+          suppressDefaultStyles
           styles={{
             textInput: styles.textInput,
+            container: {
+              position: "absolute",
+              top: 85,
+              left: 10,
+              right: 10,
+            },
           }}
           fetchDetails
           query={{

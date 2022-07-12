@@ -17,9 +17,9 @@ export default function App() {
       {/* mapa com msg de covid e opcoes de viagem rapida */}
       {/* <HomeScreen /> */}
       {/* pagina de busca de endereço */}
-      {/* <DestinationSearch /> */}
+      <DestinationSearch />
       {/* mapa com valores do uber */}
-      <SearchResults/>
+      {/* <SearchResults/> */}
 
     </>
   );

@@ -11,6 +11,19 @@ const styles = StyleSheet.create({
         backgroundColor: '#eee',
         marginVertical: 5,
     },
+    row: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    iconContainer: {
+        backgroundColor: '#a2a2a2',
+        padding: 5,
+        borderRadius: 50,
+        marginRight: 15,
+    },
+    locationText: {
+        
+    },
 })
 
 export default styles;
