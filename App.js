@@ -1,15 +1,53 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useEffect } from 'react';
+import { PermissionsAndroid, Platform } from 'react-native';
 
-//Feito download dos icones -> add Lista de todas as fontes disponíveis para copiar e colar no Info.plist (IOS) -> Edite android/app/build.gradle( NOT android/build.gradle)
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Geolocation from '@react-native-community/geolocation';
 
+
+// mostrar as paginas do app
 import HomeScreen from './src/screens/HomeScreen';
 import DestinationSearch from './src/screens/DestinationSearch';
 import SearchResults from './src/screens/SearchResults';
 
+navigator.geolocation = require('@react-native-community/geolocation');
+
 export default function App() {
+  //TODO permissao p/ utilizar a localizacao do dispositivo, e vai ser chamado onde interessa, somente para android essa permissao
+  const androidPermissions = async()=>{
+    try {
+      const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+        {
+          title: "UBER App Camera Permission",
+          message:
+            "UBER App needs access to your LOCATION " +
+            "so you can take awesome rides.",
+          buttonNeutral: "Ask Me Later",
+          buttonNegative: "Cancel",
+          buttonPositive: "OK"
+        }
+      );
+      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        console.log("You can use the LOCATION");
+      } else {
+        console.log("LOCATION permission denied");
+      }
+    } catch (err) {
+      console.warn(err);
+    }
+  }
+  
+  // vai rodar qnd o componente 'mount' se for um sistema operacional ou outro
+  useEffect(()=>{
+    if(Platform.OS === 'android'){
+      androidPermissions();
+    }else{
+      // ios
+      Geolocation.requestAuthorization();
+    }
+  },[])
+  
   return (
     <>
     

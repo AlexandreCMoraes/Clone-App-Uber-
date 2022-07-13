@@ -29,20 +29,15 @@ const DestinationSearch = (props) => {
             setOriginPlace({ data, details });
             console.log(data, details);
           }}
-          // coocado para ignorar default styles
+          // remove PoweredByGoogle da tela
+          enablePoweredByContainer={false}
+          // colocado para ignorar default styles
           suppressDefaultStyles
           styles={{
             textInput: styles.textInput,
-            container: {
-              position: "absolute",
-              top: 30,
-              left: 10,
-              right: 10,
-            },
-            listView: {
-              position: "absolute",
-              top: 110,
-            },
+            container: styles.autocompleteContainer,
+            listView: styles.listView,
+            separator: styles.separator,
           }}
           fetchDetails
           query={{
@@ -62,15 +57,13 @@ const DestinationSearch = (props) => {
             setDestinationPlace({ data, details });
             console.log(data, details);
           }}
+          enablePoweredByContainer={false}
           suppressDefaultStyles
           styles={{
             textInput: styles.textInput,
-            container: {
-              position: "absolute",
-              top: 85,
-              left: 10,
-              right: 10,
-            },
+            // precisa sobresescrever o valor de top para 85, criando um objeto de(autocompleteContainer) e desestruturando todo o estilo aplicado no container
+            container: { ...styles.autocompleteContainer, top: 85 },
+            separator: styles.separator,
           }}
           fetchDetails
           query={{
@@ -78,10 +71,21 @@ const DestinationSearch = (props) => {
             key: "",
             language: "en",
           }}
+          renderRow={(data) => <PlaceRow data={data} />}
         />
+        {/* detalhes ao lado de 'From' e 'where to' (quadrado e circulo e uma linha vertical entre) */}
+        <View style={styles.circle} />
+        <View style={styles.line} />
+        <View style={styles.square} />
       </View>
     </SafeAreaView>
   );
 };
 
 export default DestinationSearch;
+
+// Get Current Location -> foi feito install yarn add @react-native-community/geolocation 
+// Configuration and Permissions -> nao foi preciso seguir alguns passos, pois foi usado expo cli
+// Android -> To request access to location, you need to add the following line to your app's AndroidManifest.xml:
+{/* <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> */}
+
