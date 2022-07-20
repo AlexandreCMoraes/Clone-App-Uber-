@@ -1,85 +1,66 @@
 import { StatusBar } from 'expo-status-bar';
-<<<<<<< HEAD
 import { StyleSheet, Text, View } from 'react-native';
-=======
 import React, { useEffect } from 'react';
 import { PermissionsAndroid, Platform } from 'react-native';
->>>>>>> 01ddee465d267e7b545df2faf7c40944c5ef0ddb
 
-import Geolocation from '@react-native-community/geolocation';
+import Geolocation from 'react-native-geolocation-service';
 
 
 // mostrar as paginas do app
 import HomeScreen from './src/screens/HomeScreen';
 import DestinationSearch from './src/screens/DestinationSearch';
 import SearchResults from './src/screens/SearchResults';
-import  React, { useEffect } from 'react';
-import { PermissionsAndroid, Platform } from 'react-native';
 
 
-navigator.geolocation = require('@react-native-community/geolocation');
+// navigator.geolocation = require('@react-native-community/geolocation');
 
 export default function App() {
-<<<<<<< HEAD
-   //TODO permissao p/ utilizar a localizacao do dispositivo, e vai ser chamado onde interessa, somente para android essa permissao
-   const androidPermissions = async()=>{
-=======
-  //TODO permissao p/ utilizar a localizacao do dispositivo, e vai ser chamado onde interessa, somente para android essa permissao
-  const androidPermissions = async()=>{
->>>>>>> 01ddee465d267e7b545df2faf7c40944c5ef0ddb
-    try {
-      const granted = await PermissionsAndroid.request(
-        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-        {
-          title: "UBER App Camera Permission",
-          message:
-            "UBER App needs access to your LOCATION " +
-            "so you can take awesome rides.",
-          buttonNeutral: "Ask Me Later",
-          buttonNegative: "Cancel",
-          buttonPositive: "OK"
+    //TODO permissao p/ utilizar a localizacao do dispositivo, e vai ser chamado onde interessa, somente para android essa permissao
+    const androidPermissions = async () => {
+        try {
+            const granted = await PermissionsAndroid.request(
+                PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+                {
+                    title: "UBER App Camera Permission",
+                    message:
+                        "UBER App needs access to your LOCATION " +
+                        "so you can take awesome rides.",
+                    buttonNeutral: "Ask Me Later",
+                    buttonNegative: "Cancel",
+                    buttonPositive: "OK"
+                }
+            );
+            if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+                console.log("You can use the LOCATION");
+            } else {
+                console.log("LOCATION permission denied");
+            }
+        } catch (err) {
+            console.warn(err);
         }
-      );
-      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-        console.log("You can use the LOCATION");
-      } else {
-        console.log("LOCATION permission denied");
-      }
-    } catch (err) {
-      console.warn(err);
     }
-  }
-<<<<<<< HEAD
+    // vai rodar qnd o componente 'mount' se for um sistema operacional ou outro
+    useEffect(() => {
+        if (Platform.OS === 'android') {
+            androidPermissions();
+        } else {
+            // ios
+            Geolocation.requestAuthorization();
+        }
+    }, [])
+    return (
+        <>
 
-=======
-  
->>>>>>> 01ddee465d267e7b545df2faf7c40944c5ef0ddb
-  // vai rodar qnd o componente 'mount' se for um sistema operacional ou outro
-  useEffect(()=>{
-    if(Platform.OS === 'android'){
-      androidPermissions();
-    }else{
-      // ios
-      Geolocation.requestAuthorization();
-    }
-  },[])
-<<<<<<< HEAD
-=======
-  
->>>>>>> 01ddee465d267e7b545df2faf7c40944c5ef0ddb
-  return (
-    <>
-    
-      <StatusBar barStyle="dark-content" />
-      {/* mapa com msg de covid e opcoes de viagem rapida */}
-      {/* <HomeScreen /> */}
-      {/* pagina de busca de endereço */}
-      <DestinationSearch />
-      {/* mapa com valores do uber */}
-      {/* <SearchResults/> */}
+            <StatusBar barStyle="dark-content" />
+            {/* mapa com msg de covid e opcoes de viagem rapida */}
+            {/* <HomeScreen /> */}
+            {/* pagina de busca de endereço */}
+            <DestinatiAIzaSyCevJFn6GS3QIR2onSearch />
+            {/* mapa com valores do uber */}
+            {/* <SearchResults /> */}
 
-    </>
-  );
+        </>
+    );
 };
 
 // feito install do Google Maps Search Component for React Native https://www.npmjs.com/package/react-native-google-places-autocomplete
@@ -94,7 +75,7 @@ export default function App() {
 // ...
 // (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 // {
-  
+
 // TODO colocar a key da api 
 // +  [GMSServices provideAPIKey:@"_YOUR_API_KEY_"]; // add this line using the api key obtained from Google Console
 // ...

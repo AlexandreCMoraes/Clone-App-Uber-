@@ -17,8 +17,7 @@ const UberTypes = () => {
     <View>
       {/* pega o array existente (typesData) e usa os dados para um novo array usando os dados de UberTypeRow */}
       {typesData.map((type) => (
-        // TODO resolver problemas das keys
-        <UberTypeRow type={type} />   
+        <UberTypeRow type={type} key={type.id} />
       ))}
       {/* <UberTypeRow /> */}
 

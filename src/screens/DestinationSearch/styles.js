@@ -38,10 +38,6 @@ const styles = StyleSheet.create({
         marginRight: 15,
     },
     locationText: {
-<<<<<<< HEAD
-=======
-
->>>>>>> 01ddee465d267e7b545df2faf7c40944c5ef0ddb
     },
     // detalhes ao lado de 'From' e 'where to' (quadrado e circulo e uma linha vertical entre)
     circle: {
@@ -69,10 +65,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 115,
         left: 10,
-<<<<<<< HEAD
         
-=======
->>>>>>> 01ddee465d267e7b545df2faf7c40944c5ef0ddb
     },
 })
 
