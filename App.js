@@ -1,9 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
+<<<<<<< HEAD
 import { StyleSheet, Text, View } from 'react-native';
+=======
+import React, { useEffect } from 'react';
+import { PermissionsAndroid, Platform } from 'react-native';
+>>>>>>> 01ddee465d267e7b545df2faf7c40944c5ef0ddb
 
-//Feito download dos icones -> add Lista de todas as fontes disponíveis para copiar e colar no Info.plist (IOS) -> Edite android/app/build.gradle( NOT android/build.gradle)
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Geolocation from '@react-native-community/geolocation';
 
+
+// mostrar as paginas do app
 import HomeScreen from './src/screens/HomeScreen';
 import DestinationSearch from './src/screens/DestinationSearch';
 import SearchResults from './src/screens/SearchResults';
@@ -11,9 +17,16 @@ import  React, { useEffect } from 'react';
 import { PermissionsAndroid, Platform } from 'react-native';
 
 
+navigator.geolocation = require('@react-native-community/geolocation');
+
 export default function App() {
+<<<<<<< HEAD
    //TODO permissao p/ utilizar a localizacao do dispositivo, e vai ser chamado onde interessa, somente para android essa permissao
    const androidPermissions = async()=>{
+=======
+  //TODO permissao p/ utilizar a localizacao do dispositivo, e vai ser chamado onde interessa, somente para android essa permissao
+  const androidPermissions = async()=>{
+>>>>>>> 01ddee465d267e7b545df2faf7c40944c5ef0ddb
     try {
       const granted = await PermissionsAndroid.request(
         PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
@@ -36,7 +49,11 @@ export default function App() {
       console.warn(err);
     }
   }
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> 01ddee465d267e7b545df2faf7c40944c5ef0ddb
   // vai rodar qnd o componente 'mount' se for um sistema operacional ou outro
   useEffect(()=>{
     if(Platform.OS === 'android'){
@@ -46,6 +63,10 @@ export default function App() {
       Geolocation.requestAuthorization();
     }
   },[])
+<<<<<<< HEAD
+=======
+  
+>>>>>>> 01ddee465d267e7b545df2faf7c40944c5ef0ddb
   return (
     <>
     

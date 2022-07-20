@@ -29,10 +29,16 @@ const DestinationSearch = (props) => {
             setOriginPlace({ data, details });
             console.log(data, details);
           }}
+<<<<<<< HEAD
           // coocado para ignorar default styles
             // remove PoweredByGoogle da tela
             enablePoweredByContainer={false}
             // colocado para ignorar default styles
+=======
+          // remove PoweredByGoogle da tela
+          enablePoweredByContainer={false}
+          // colocado para ignorar default styles
+>>>>>>> 01ddee465d267e7b545df2faf7c40944c5ef0ddb
           suppressDefaultStyles
           styles={{
             textInput: styles.textInput,
@@ -74,8 +80,13 @@ const DestinationSearch = (props) => {
           }}
           renderRow={(data) => <PlaceRow data={data} />}
         />
+<<<<<<< HEAD
             {/* detalhes ao lado de 'From' e 'where to' (quadrado e circulo e uma linha vertical entre) */}
             <View style={styles.circle} />
+=======
+        {/* detalhes ao lado de 'From' e 'where to' (quadrado e circulo e uma linha vertical entre) */}
+        <View style={styles.circle} />
+>>>>>>> 01ddee465d267e7b545df2faf7c40944c5ef0ddb
         <View style={styles.line} />
         <View style={styles.square} />
       </View>
@@ -84,7 +95,16 @@ const DestinationSearch = (props) => {
 };
 
 export default DestinationSearch;
+<<<<<<< HEAD
 // Get Current Location -> foi feito install yarn add @react-native-community/geolocation 
 // Configuration and Permissions -> nao foi preciso seguir alguns passos, pois foi usado expo cli
 // Android -> To request access to location, you need to add the following line to your app's AndroidManifest.xml:
 {/* <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> */}
+=======
+
+// Get Current Location -> foi feito install yarn add @react-native-community/geolocation 
+// Configuration and Permissions -> nao foi preciso seguir alguns passos, pois foi usado expo cli
+// Android -> To request access to location, you need to add the following line to your app's AndroidManifest.xml:
+{/* <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> */}
+
+>>>>>>> 01ddee465d267e7b545df2faf7c40944c5ef0ddb
