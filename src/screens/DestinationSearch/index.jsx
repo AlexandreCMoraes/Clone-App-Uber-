@@ -34,6 +34,9 @@ const DestinationSearch = (props) => {
             enablePoweredByContainer={false}
             // colocado para ignorar default styles
           suppressDefaultStyles
+          //TODO mostra a localizacao atual
+          currentLocation={true}
+          currentLocationLabel='Current location'
           styles={{
             textInput: styles.textInput,
             container: styles.autocompleteContainer,
@@ -43,7 +46,7 @@ const DestinationSearch = (props) => {
           fetchDetails
           query={{
             // TODO apagar key quando enviar github 04
-            key: "",
+            key: "AIzaSyCevJFn6GS3QIR2-u05AiwDcWv-e8ZYpIA",
             language: "en",
           }}
           // renderizado na lista de busca
@@ -69,7 +72,7 @@ const DestinationSearch = (props) => {
           fetchDetails
           query={{
             // TODO apagar key quando enviar github 05
-            key: "",
+            key: "AIzaSyCevJFn6GS3QIR2-u05AiwDcWv-e8ZYpIA",
             language: "en",
           }}
           renderRow={(data) => <PlaceRow data={data} />}

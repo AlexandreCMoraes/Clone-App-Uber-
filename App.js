@@ -1,10 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
 import React, { useEffect } from 'react';
 import { PermissionsAndroid, Platform } from 'react-native';
 
 import Geolocation from 'react-native-geolocation-service';
-
 
 // mostrar as paginas do app
 import HomeScreen from './src/screens/HomeScreen';
@@ -21,7 +19,7 @@ export default function App() {
             const granted = await PermissionsAndroid.request(
                 PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
                 {
-                    title: "UBER App Camera Permission",
+                    title: "UBER App LOCATION Permission",
                     message:
                         "UBER App needs access to your LOCATION " +
                         "so you can take awesome rides.",
@@ -55,7 +53,7 @@ export default function App() {
             {/* mapa com msg de covid e opcoes de viagem rapida */}
             {/* <HomeScreen /> */}
             {/* pagina de busca de endereço */}
-            <DestinatiAIzaSyCevJFn6GS3QIR2onSearch />
+            <DestinationSearch />
             {/* mapa com valores do uber */}
             {/* <SearchResults /> */}
 

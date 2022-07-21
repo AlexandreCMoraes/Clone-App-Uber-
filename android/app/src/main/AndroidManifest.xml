@@ -32,7 +32,7 @@
     <!-- TODO apagar key quando enviar github 01 -->
     <meta-data
      android:name="com.google.android.geo.API_KEY"
-     android:value=""/>
+     android:value="AIzaSyCevJFn6GS3QIR2-u05AiwDcWv-e8ZYpIA"/>
     
     <activity android:name=".MainActivity" android:label="@string/app_name" android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode" android:launchMode="singleTask" android:windowSoftInputMode="adjustResize" android:theme="@style/Theme.App.SplashScreen" android:exported="true">
       <intent-filter>
