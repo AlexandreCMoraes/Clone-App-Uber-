@@ -34,7 +34,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   // TODO apagar key quando enviar github 02
-  [GMSServices provideAPIKey:@"AIzaSyCevJFn6GS3QIR2-u05AiwDcWv-e8ZYpIA"];
+  [GMSServices provideAPIKey:@""];
    // add this line using the api key obtained from Google Console
   RCTAppSetupPrepareApp(application);
 
@@ -113,7 +113,7 @@
 - (std::unique_ptr<facebook::react::JSExecutorFactory>)jsExecutorFactoryForBridge:(RCTBridge *)bridge
 {
   _turboModuleManager = [[RCTTurboModuleManager alloc] initWithBridge:bridge
-                                                             delegate:self
+                                          delegate:self
                                                             jsInvoker:bridge.jsCallInvoker];
   return RCTAppSetupDefaultJsExecutorFactory(bridge, _turboModuleManager);
 }

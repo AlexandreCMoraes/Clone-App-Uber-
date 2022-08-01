@@ -334,7 +334,6 @@ dependencies {
     } else {
         implementation jscFlavor
     }
-    // TODO colocado aqui
     implementation project(':react-native-community-geolocation')
 
 }

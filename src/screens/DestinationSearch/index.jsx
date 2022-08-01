@@ -1,10 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { View, TextInput, SafeAreaView } from "react-native";
+import { View, SafeAreaView } from "react-native";
 
 import styles from "./styles";
 
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import PlaceRow from "./PlaceRow";
+
+navigator.geolocation = require("react-native-geolocation-service");
+
+// TODO feito destinos pre definido
+const homePlace = {
+  description: 'Home',
+  geometry: { location: { lat: 48.8152937, lng: 2.4597668 } },
+};
+const workPlace = {
+  description: 'Work',
+  geometry: { location: { lat: 48.8496818, lng: 2.2940881 } },
+};
 
 const DestinationSearch = (props) => {
   const [originPlace, setOriginPlace] = useState(null);
@@ -17,6 +29,8 @@ const DestinationSearch = (props) => {
       console.warn("Redirect to results");
     }
   }, [originPlace, destinationPlace]);
+  
+ 
 
   return (
     <SafeAreaView>
@@ -29,14 +43,13 @@ const DestinationSearch = (props) => {
             setOriginPlace({ data, details });
             console.log(data, details);
           }}
-          // coocado para ignorar default styles
-            // remove PoweredByGoogle da tela
-            enablePoweredByContainer={false}
-            // colocado para ignorar default styles
+          // remove PoweredByGoogle da tela
+          enablePoweredByContainer={false}
+          // colocado para ignorar default styles
           suppressDefaultStyles
-          //TODO mostra a localizacao atual
-          currentLocation={true}
-          currentLocationLabel='Current location'
+          //TODO mostra a localizacao atual. Precisa revisar pois nao esta funcionando
+          // currentLocation={true}
+          // currentLocationLabel="Current location"
           styles={{
             textInput: styles.textInput,
             container: styles.autocompleteContainer,
@@ -44,13 +57,22 @@ const DestinationSearch = (props) => {
             separator: styles.separator,
           }}
           fetchDetails
+          getDefaultValue={() => ''}
+
           query={{
             // TODO apagar key quando enviar github 04
-            key: "AIzaSyCevJFn6GS3QIR2-u05AiwDcWv-e8ZYpIA",
+            key: "",
             language: "en",
           }}
+          
+          
           // renderizado na lista de busca
           renderRow={(data) => <PlaceRow data={data} />}
+          renderDescription={(data) => data.description || data.vicinity}
+          // TODO feito destinos pre definido
+
+          predefinedPlaces={[homePlace, workPlace]}
+
         />
 
         {/* Uso da API Google Places AutoComplete */}
@@ -72,13 +94,13 @@ const DestinationSearch = (props) => {
           fetchDetails
           query={{
             // TODO apagar key quando enviar github 05
-            key: "AIzaSyCevJFn6GS3QIR2-u05AiwDcWv-e8ZYpIA",
+            key: "",
             language: "en",
           }}
           renderRow={(data) => <PlaceRow data={data} />}
         />
-            {/* detalhes ao lado de 'From' e 'where to' (quadrado e circulo e uma linha vertical entre) */}
-            <View style={styles.circle} />
+        {/* detalhes ao lado de 'From' e 'where to' (quadrado e circulo e uma linha vertical entre) */}
+        <View style={styles.circle} />
         <View style={styles.line} />
         <View style={styles.square} />
       </View>
@@ -87,7 +109,3 @@ const DestinationSearch = (props) => {
 };
 
 export default DestinationSearch;
-// Get Current Location -> foi feito install yarn add @react-native-community/geolocation 
-// Configuration and Permissions -> nao foi preciso seguir alguns passos, pois foi usado expo cli
-// Android -> To request access to location, you need to add the following line to your app's AndroidManifest.xml:
-{/* <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> */}

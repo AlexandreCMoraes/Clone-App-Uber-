@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Image, FlatList } from "react-native";
+import { Image } from "react-native";
 
 import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 // import { enableLatestRenderer } from "react-native-maps";
@@ -21,6 +21,11 @@ const HomeMap = (props) => {
     <MapView
       style={{ height: "100%", width: "100%" }}
       provider={PROVIDER_GOOGLE}
+      //TODO mostra a localizacao atual. Precisa revisar pois nao esta funcionando
+      showsUserLocation={true}
+      // userInterfaceStyle="dark"
+      showsMyLocationButton={true}
+      // showsCompass={true}
       initialRegion={{
         latitudeDelta: 0.0222,
         longitudeDelta: 0.0121,
@@ -40,7 +45,7 @@ const HomeMap = (props) => {
               width: 60,
               height: 60,
               resizeMode: "contain",
-              // TODO feito template string para colocar os carros em posições "aleatorias"
+
               transform: [
                 {
                   rotate: `${car.heading}deg`,
