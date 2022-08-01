@@ -4,14 +4,6 @@ import { PermissionsAndroid, Platform } from 'react-native';
 
 import Geolocation from 'react-native-geolocation-service';
 
-// react navigation 
-// import 'react-native-gesture-handler';
-
-// mostrar as paginas do app(depois de instalar react navigation, nao sera mais necessario)
-// import HomeScreen from './src/screens/HomeScreen';
-// import DestinationSearch from './src/screens/DestinationSearch';
-// import SearchResults from './src/screens/SearchResults';
-
 import Router from './src/navigation/Root';
 
 export default function App() {
@@ -52,17 +44,8 @@ export default function App() {
 
     return (
         <>
-
             <StatusBar barStyle="dark-content" />
-            {/* mapa com msg de covid e opcoes de viagem rapida */}
-            {/* <HomeScreen /> */}
-            {/* pagina de busca de endereço */}
-            {/* <DestinationSearch /> */}
-            {/* mapa com valores do uber */}
-            {/* <SearchResults /> */}
-            
-            <Router/>
-
+            <Router />
         </>
     );
 };

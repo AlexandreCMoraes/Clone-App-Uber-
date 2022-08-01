@@ -2,7 +2,6 @@ import React from "react";
 import { Image } from "react-native";
 
 import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
-// import { enableLatestRenderer } from "react-native-maps";
 
 import cars from "../../assets/data/cars";
 

@@ -5,16 +5,17 @@ import styles from "./styles";
 
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import PlaceRow from "./PlaceRow";
+import { useNavigation } from "@react-navigation/native";
 
 navigator.geolocation = require("react-native-geolocation-service");
 
 // TODO feito destinos pre definido
 const homePlace = {
-  description: 'Home',
+  description: "Home",
   geometry: { location: { lat: 48.8152937, lng: 2.4597668 } },
 };
 const workPlace = {
-  description: 'Work',
+  description: "Work",
   geometry: { location: { lat: 48.8496818, lng: 2.2940881 } },
 };
 
@@ -22,15 +23,16 @@ const DestinationSearch = (props) => {
   const [originPlace, setOriginPlace] = useState(null);
   const [destinationPlace, setDestinationPlace] = useState(null);
 
-  // Checando se ambos estao
+  const navigation = useNavigation();
+
+  // Checando se ambos estao funcionam depois de renderizar a tela
   useEffect(() => {
-    console.warn("useEffect foi chamado");
+    console.log("useEffect foi chamado");
     if (originPlace && destinationPlace) {
-      console.warn("Redirect to results");
+      navigation.navigate("SearchResults");
+      console.log("Redirecionando para pagina SearchResults");
     }
   }, [originPlace, destinationPlace]);
-  
- 
 
   return (
     <SafeAreaView>
@@ -57,22 +59,16 @@ const DestinationSearch = (props) => {
             separator: styles.separator,
           }}
           fetchDetails
-          getDefaultValue={() => ''}
-
+          getDefaultValue={() => ""}
           query={{
             // TODO apagar key quando enviar github 04
             key: "",
             language: "en",
           }}
-          
-          
           // renderizado na lista de busca
           renderRow={(data) => <PlaceRow data={data} />}
           renderDescription={(data) => data.description || data.vicinity}
-          // TODO feito destinos pre definido
-
           predefinedPlaces={[homePlace, workPlace]}
-
         />
 
         {/* Uso da API Google Places AutoComplete */}

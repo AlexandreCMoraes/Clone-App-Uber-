@@ -11,15 +11,13 @@ const PlaceRow = ({ data }) => {
   return (
     <View style={styles.row}>
       <View style={styles.iconContainer}>
-      {/* TODO feito destinos pre definido */}
+        {/* TODO feito destinos pre definido */}
 
         {data.description === "Home" ? (
           <Entypo name="home" size={20} color={"white"} />
         ) : (
           <Entypo name="location-pin" size={20} color={"white"} />
         )}
-
-        {/* <Entypo name="location-pin" size={20} color={'white'} /> */}
       </View>
       <Text style={styles.locationText}>
         {data.description || data.vicinity}
