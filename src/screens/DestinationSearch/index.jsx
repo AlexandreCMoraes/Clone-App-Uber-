@@ -29,7 +29,11 @@ const DestinationSearch = (props) => {
   useEffect(() => {
     console.log("useEffect foi chamado");
     if (originPlace && destinationPlace) {
-      navigation.navigate("SearchResults");
+      // enviar segundo parametro (ira receber os dados na outra pagina SearchResults)
+      navigation.navigate("SearchResults",{
+        originPlace,
+        destinationPlace
+      });
       console.log("Redirecionando para pagina SearchResults");
     }
   }, [originPlace, destinationPlace]);
