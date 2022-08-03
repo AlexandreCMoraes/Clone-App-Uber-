@@ -1,32 +1,53 @@
-import { NavigationContainer } from "@react-navigation/native";
-
 import React from "react";
 
-import { createStackNavigator } from "@react-navigation/stack";
+import { createDrawerNavigator, DrawerContent } from "@react-navigation/drawer";
 import "react-native-gesture-handler";
 
-import HomeScreen from "../screens/HomeScreen";
-import DestinationSearch from "../screens/DestinationSearch";
-import SearchResults from "../screens/SearchResults";
+import HomeNavigator from "./Home";
+import { NavigationContainer } from "@react-navigation/native";
+import { Text, View } from "react-native";
+import CustomDrawer from "./CustomDrawer";
 
-const Stack = createStackNavigator();
+const Drawer = createDrawerNavigator();
+
+const DummyScreen = (props) => (
+  <View style={{ justifyContent: "center", alignItems: "center" }}>
+    <Text>{props.name}</Text>
+  </View>
+);
 
 const RootNavigator = () => {
   return (
     <NavigationContainer>
-      {/* tira o titulo de cada pagina */}
-      <Stack.Navigator
-        screenOptions={{ headerShown: false }}
-        // initialRouteName={"SearchResults"}
+      
+      <Drawer.Navigator     
+        // TODO lembrar de tirar defaultStatus="open" (feito pra facilitar edição)
+        defaultStatus="open"
+        screenOptions={{ headerShown: true }}
+        // sera customizado em outro component
+        drawerContent={(props) => <CustomDrawer {...props} />}
       >
-        <Stack.Screen name={"Home"} component={HomeScreen} />
-        <Stack.Screen
-          name={"DestinationSearch"}
-          component={DestinationSearch}
-        />
-        <Stack.Screen name={"SearchResults"} component={SearchResults} />
-      </Stack.Navigator>
+        <Drawer.Screen name="Home" component={HomeNavigator} />
+
+        <Drawer.Screen name="Your Trips">
+          {/* Error: Got an invalid value for 'children' prop for the screen 'Settings '. It must be a function returning a React Element. Qnd nao tem {() => } */}
+          {() => <DummyScreen name={"Your Trips"} />}
+        </Drawer.Screen>
+
+        <Drawer.Screen name="Help">
+          {() => <DummyScreen name={"Help"} />}
+        </Drawer.Screen>
+
+        <Drawer.Screen name="Wallet">
+          {() => <DummyScreen name={"Wallet"} />}
+        </Drawer.Screen>
+
+        <Drawer.Screen name="Settings ">
+          {() => <DummyScreen name={"Settings "} />}
+        </Drawer.Screen>
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 };
+
 export default RootNavigator;

@@ -9,7 +9,6 @@ import { useNavigation } from "@react-navigation/native";
 
 navigator.geolocation = require("react-native-geolocation-service");
 
-// TODO feito destinos pre definido
 const homePlace = {
   description: "Home",
   geometry: { location: { lat: 48.8152937, lng: 2.4597668 } },
@@ -30,9 +29,9 @@ const DestinationSearch = (props) => {
     console.log("useEffect foi chamado");
     if (originPlace && destinationPlace) {
       // enviar segundo parametro (ira receber os dados na outra pagina SearchResults)
-      navigation.navigate("SearchResults",{
+      navigation.navigate("SearchResults", {
         originPlace,
-        destinationPlace
+        destinationPlace,
       });
       console.log("Redirecionando para pagina SearchResults");
     }

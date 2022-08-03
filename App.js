@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect } from 'react';
 import { PermissionsAndroid, Platform } from 'react-native';
+// import "react-native-gesture-handler";
 
 import Geolocation from 'react-native-geolocation-service';
 

@@ -11,8 +11,6 @@ const PlaceRow = ({ data }) => {
   return (
     <View style={styles.row}>
       <View style={styles.iconContainer}>
-        {/* TODO feito destinos pre definido */}
-
         {data.description === "Home" ? (
           <Entypo name="home" size={20} color={"white"} />
         ) : (
