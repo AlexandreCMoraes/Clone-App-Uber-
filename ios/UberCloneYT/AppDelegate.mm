@@ -34,7 +34,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   // TODO apagar key quando enviar github 02
-  [GMSServices provideAPIKey:@""];
+  [GMSServices provideAPIKey:@"AIzaSyDuQ3D3KdianlH_odzvpEojPIwYQneOm5g"];
    // add this line using the api key obtained from Google Console
   RCTAppSetupPrepareApp(application);
 

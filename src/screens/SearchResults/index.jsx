@@ -10,11 +10,12 @@ const SearchResults = () => {
 
   // ver quais serao os dados recebidos
   console.log(route.params);
+  const {originPlace, destinationPlace} = route.params
 
   return (
     <View style={{ display: "flex", justifyContent: "space-between" }}>
       <View style={{ height: Dimensions.get("window").height - 400 }}>
-        <RouteMap />
+        <RouteMap origin={originPlace}  destination={destinationPlace}/>
       </View>
 
       <View style={{ height: 400 }}>

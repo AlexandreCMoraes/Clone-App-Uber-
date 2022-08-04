@@ -65,7 +65,7 @@ const DestinationSearch = (props) => {
           getDefaultValue={() => ""}
           query={{
             // TODO apagar key quando enviar github 04
-            key: "",
+            key: "AIzaSyDuQ3D3KdianlH_odzvpEojPIwYQneOm5g",
             language: "en",
           }}
           // renderizado na lista de busca
@@ -93,7 +93,7 @@ const DestinationSearch = (props) => {
           fetchDetails
           query={{
             // TODO apagar key quando enviar github 05
-            key: "",
+            key: "AIzaSyDuQ3D3KdianlH_odzvpEojPIwYQneOm5g",
             language: "en",
           }}
           renderRow={(data) => <PlaceRow data={data} />}
