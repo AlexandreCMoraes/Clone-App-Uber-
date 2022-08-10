@@ -3,9 +3,10 @@ import React from "react";
 import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import MapViewDirections from "react-native-maps-directions";
 
-const GOOGLE_MAPS_APIKEY = "AIzaSyDuQ3D3KdianlH_odzvpEojPIwYQneOm5g";
-const RouteMap = ({ origin, destination }) => {
   // TODO apagar key quando enviar github 03
+const GOOGLE_MAPS_APIKEY = "";
+const RouteMap = ({ origin, destination }) => {
+  // TODO verificar erro ao digitar na SearchResults
   const originLocation = {
     latitude: origin.details.geometry.location.lat,
     longitude: origin.details.geometry.location.lng,
@@ -36,8 +37,9 @@ const RouteMap = ({ origin, destination }) => {
         strokeWidth={4}
         strokeColor="black"
       />
-      <Marker coordinate={origin} title={"Origin"} />
-      <Marker coordinate={destination} title={"Destination"} />
+      
+      <Marker coordinate={originLocation} title={"Origin"} />
+      <Marker coordinate={destinationLocation} title={"Destination"} />
     </MapView>
   );
 };

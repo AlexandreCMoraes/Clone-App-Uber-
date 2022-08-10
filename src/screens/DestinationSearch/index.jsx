@@ -53,7 +53,7 @@ const DestinationSearch = (props) => {
           // colocado para ignorar default styles
           suppressDefaultStyles
           //TODO mostra a localizacao atual. Precisa revisar pois nao esta funcionando
-          // currentLocation={true}
+          currentLocation={true}
           // currentLocationLabel="Current location"
           styles={{
             textInput: styles.textInput,
@@ -65,7 +65,7 @@ const DestinationSearch = (props) => {
           getDefaultValue={() => ""}
           query={{
             // TODO apagar key quando enviar github 04
-            key: "AIzaSyDuQ3D3KdianlH_odzvpEojPIwYQneOm5g",
+            key: "",
             language: "en",
           }}
           // renderizado na lista de busca
@@ -93,7 +93,7 @@ const DestinationSearch = (props) => {
           fetchDetails
           query={{
             // TODO apagar key quando enviar github 05
-            key: "AIzaSyDuQ3D3KdianlH_odzvpEojPIwYQneOm5g",
+            key: "",
             language: "en",
           }}
           renderRow={(data) => <PlaceRow data={data} />}
