@@ -9,14 +9,18 @@
       "UnauthRoleName": "amplify-cloneappuber-dev-142639-unauthRole",
       "StackName": "amplify-cloneappuber-dev-142639",
       "StackId": "arn:aws:cloudformation:sa-east-1:320899864579:stack/amplify-cloneappuber-dev-142639/98b873d0-18d1-11ed-b38a-0a47d423f62c",
-      "AmplifyAppId": "d2s93w64momhva"
+      "AmplifyAppId": "d2s93w64momhva",
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-cloneappuber-dev-142639-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
     },
     "categories": {
       "auth": {
         "cloneappuber05c1d6b105c1d6b1": {}
       },
       "function": {
-        "cloneappuber05c1d6b105c1d6b1PostConfirmation": {}
+        "cloneappuber05c1d6b105c1d6b1PostConfirmation": {
+          "deploymentBucketName": "amplify-cloneappuber-dev-142639-deployment",
+          "s3Key": "amplify-builds/cloneappuber05c1d6b105c1d6b1PostConfirmation-68503857667967307448-build.zip"
+        }
       }
     }
   }
