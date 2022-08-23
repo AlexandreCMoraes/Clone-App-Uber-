@@ -3,7 +3,7 @@ import React from "react";
 import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import MapViewDirections from "react-native-maps-directions";
 
-  // TODO apagar key quando enviar github 03
+  // TODO APAGAR KEY QUANDO ENVIAR AO GITHUB 03
 const GOOGLE_MAPS_APIKEY = "";
 const RouteMap = ({ origin, destination }) => {
   // TODO verificar erro ao digitar na SearchResults
