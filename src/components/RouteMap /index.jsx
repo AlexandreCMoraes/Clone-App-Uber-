@@ -25,7 +25,6 @@ const RouteMap = ({ origin, destination }) => {
       initialRegion={{
         latitudeDelta: 0.0222,
         longitudeDelta: 0.0121,
-        //pego do data/cars
         latitude: 28.450627,
         longitude: -16.263045,
       }}

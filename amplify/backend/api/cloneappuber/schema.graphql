@@ -3,67 +3,37 @@
 input AMPLIFY {
   globalAuthRule: AuthRule = { allow: public }
 } # FOR TESTING ONLY!
-
-# TODO arrumar comentarios
-# significa que vai configurar automaticamente um Dynamo DB table quando há um @model (crição de banco de dados)
-# type User @model {
-#   id: ID!
-#   username: String!
-#   email: String!
-#   # relação contraria de User para Orders (pegar varias orders para um usuario)
-#   orders:[Order] @connection(keyName: "byUser", fields: ["id"])
-# }
-
-# type Car @model {
-#   id: ID!
-#   type: String!
-#   latitude: Float
-#   longitude: Float
-#   heading: Float
-#   # fields com duas
-#   orders:[Order] @connection(keyName: "byCar", fields: ["id"])
-# }
-
-# type Order @model 
-# @key(name:"byUser", fields: ["userId"]) 
-# @key(name:"byCar", fields: ["carId", "createdAt"]) {
-#   id: ID!  
-#   createdAt: ID!
-#   userId: ID!
-#   # relação de Order com User (muitos para um)
-#   user: User @connection(fields: ["userId"])
-#   # relacionar order para carro
-#   carId: ID
-#   car: Car @connection(fields: ["carId"])
-# }
-
-
 # significa que vai configurar automaticamente um Dynamo DB table quando há um @model (crição de banco de dados)
 type User @model {
   id: ID!
   username: String!
   email: String!
   # relação contraria de User para Orders (pegar varias orders para um usuario)
-  orders:[Order] @hasMany
+  orders: [Order] @hasMany
 }
 
 type Car @model {
   id: ID!
+  # tipo de uber a ser usado
   type: String!
   latitude: Float
   longitude: Float
   heading: Float
   # fields com duas
-  orders:[Order] @hasMany
+  orders: [Order] @hasMany
 }
 
-type Order @model 
-# @key(name:"byUser", fields: ["userId"]) 
-# @key(name:"byCar", fields: ["carId", "createdAt"]) 
-{  
+type Order @model {
   id: ID!
   createdAt: ID!
-  userId: ID! @index (name: "byUser")
+  # tipo de uber que o usuario pediu
+  type: String!
+  # origem e destino do pedido
+  originLatitude: Float!
+  originLongitude: Float!
+  destLatitude: Float!
+  destLongitude: Float!
+  userId: ID! @index(name: "byUser")
   # relação de Order com User (muitos para um)
   user: User @hasOne
   # relacionar order para carro

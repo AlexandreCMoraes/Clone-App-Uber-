@@ -7,12 +7,10 @@ import Geolocation from 'react-native-geolocation-service';
 
 import Router from './src/navigation/Root';
 
-// import { withAuthenticator } from '@aws-amplify/ui-react';
-// import '@aws-amplify/ui-react/styles.css';
-
 import { withAuthenticator } from 'aws-amplify-react-native';
 import { Amplify } from 'aws-amplify'
 import awsconfig from './src/aws-exports'
+
 Amplify.configure(awsconfig)
 
 function App() {
