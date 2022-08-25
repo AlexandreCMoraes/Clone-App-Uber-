@@ -1,13 +1,15 @@
 // Sera importado em SearchResults e renderizado
 import React from "react";
-import { View, Image, Text } from "react-native";
+import { View, Image, Text, Pressable } from "react-native";
 
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 import styles from "./styles";
 
 const UberTypeRow = (props) => {
-  const { type } = props;
+  // typeState esta fora do componente (UberTypes), ou seja, a logica das rotas
+  // estao aqui (SearchResults). tudo isso para quando clicar e selecionar o tipo de uber
+  const { type, onPress, isSelected } = props;
   const getImage = () => {
     if (type.type === "UberX") {
       return require("../../assets/images/UberX.jpeg");
@@ -18,7 +20,14 @@ const UberTypeRow = (props) => {
     return require("../../assets/images/UberXL.jpeg");
   };
   return (
-    <View style={styles.container}>
+    <Pressable
+      onPress={onPress}
+      style={[
+        styles.container,
+        { backgroundColor: isSelected ? "#efefef" : "white" },
+        // ira mostrar em UberType quando digitar o local de origem e destino, a mudança de cor
+      ]}
+    >
       <Image
         style={styles.image}
         // source={require("../../assets/images/UberX.jpeg")}
@@ -42,7 +51,7 @@ const UberTypeRow = (props) => {
         {/* agora pega o array e coloca aqui p/ renderizar cada preço */}
         <Text style={styles.price}>est. ${type.price}</Text>
       </View>
-    </View>
+    </Pressable>
   );
 };
 

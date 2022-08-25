@@ -21,9 +21,9 @@ const RootNavigator = () => {
     <NavigationContainer>
       
       <Drawer.Navigator     
-        // TODO lembrar de tirar defaultStatus="open" (feito pra facilitar edição)
-        defaultStatus="open"
-        screenOptions={{ headerShown: true }}
+        // TODO lembrar de tirar defaultStatus="open" (feito pra facilitar edição) e deixar screenOptions={{ headerShown: false }}. Tentar aumentar mais o mnue lateral p/ direita
+        // defaultStatus="open"
+        screenOptions={{ headerShown: false }}
         // sera customizado em outro component
         drawerContent={(props) => <CustomDrawer {...props} />}
       >

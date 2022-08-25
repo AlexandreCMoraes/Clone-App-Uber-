@@ -1,13 +1,19 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect } from 'react';
 import { PermissionsAndroid, Platform } from 'react-native';
-// import "react-native-gesture-handler";
+
 
 import Geolocation from 'react-native-geolocation-service';
 
 import Router from './src/navigation/Root';
 
-export default function App() {
+import { withAuthenticator } from 'aws-amplify-react-native';
+import { Amplify } from 'aws-amplify'
+import awsconfig from './src/aws-exports'
+
+Amplify.configure(awsconfig)
+
+function App() {
     const androidPermissions = async () => {
         try {
             const granted = await PermissionsAndroid.request(
@@ -32,8 +38,6 @@ export default function App() {
         }
     }
 
-
-    // vai rodar qnd o componente 'mount', se for um sistema operacional ou outro
     useEffect(() => {
         if (Platform.OS === 'android') {
             androidPermissions();
@@ -50,3 +54,5 @@ export default function App() {
         </>
     );
 };
+
+export default withAuthenticator(App);
