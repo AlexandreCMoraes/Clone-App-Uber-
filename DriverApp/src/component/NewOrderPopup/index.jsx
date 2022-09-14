@@ -1,0 +1,46 @@
+import React from "react";
+import { Pressable, Text, View } from "react-native";
+
+import AntDesign from "react-native-vector-icons/AntDesign";
+import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
+
+import styles from "./styles";
+
+const NewOrderPopup = ({ newOrder, onAccept, onDecline, duration, distance }) => {
+  
+  // nao é necessario estar aqui, pois esta na homescreen quando aparecer a ordem de pedido para aceitar ou nao
+  // const onDecline = () => {
+  //   console.warn("on decline order");
+  // };
+  // const onAccept = () => {
+  //   console.warn("on accept order");
+  // };
+
+  return (
+    <View style={styles.root}>
+      <Pressable onPress={onDecline} style={styles.declineButton}>
+        <Text style={styles.declineText}>Decline</Text>
+      </Pressable>
+
+      <Pressable onPress={onAccept} style={styles.popupContainer}>
+        {/* titulo uberx e imagem de usuario */}
+        <View style={styles.row}>
+          <Text style={styles.uberType}>{newOrder.type}</Text>
+          <View style={styles.userBg}>
+            <FontAwesome5 name={"user-astronaut"} color={"white"} size={35} />
+          </View>
+          <Text style={styles.uberType}>
+            <AntDesign name={"star"} size={18} />
+            {newOrder.user.rating}
+          </Text>
+        </View>
+
+        {/* textos informativos da viagem, pegando codigo da homescreen */}
+        <Text style={styles.minutes}>{duration} min</Text>
+        <Text style={styles.distance}>{distance} mi</Text>
+      </Pressable>
+    </View>
+  );
+};
+
+export default NewOrderPopup;

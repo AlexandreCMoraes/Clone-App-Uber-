@@ -11,14 +11,41 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 
 import styles from "./styles";
 
+import NewOrderPopup from "../../component/NewOrderPopup";
+
 const origin = { latitude: 37.3318456, longitude: -122.0296002 };
 const destination = { latitude: 37.771707, longitude: -122.4053769 };
-// TODO APAGAR KEY QUANDO ENVIAR AO GITHUB 07AIzaSyCttAlkYJMglu7-CLfvGm_uGwkAeFhDBec
-const GOOGLE_MAPS_APIKEY = "AIzaSyCttAlkYJMglu7-CLfvGm_uGwkAeFhDBec";
+// TODO APAGAR KEY QUANDO ENVIAR AO GITHUB 07
+const GOOGLE_MAPS_APIKEY = "AIzaSyC8yJE4NaY5LG8_Y4XcKefNnRnXG2K4Neo";
 
 const HomeScreen = () => {
   const [isOnLine, setIsOnLine] = useState(false);
+  const [order, setOrder] = useState({});
+  // pegando dados do squema 
+  const [newOrder, setNewOrder] = useState({
+    id: "1",
+    type: "UberX",
 
+    originLatitude: 28.450627,
+    originLongitude: -16.263045,
+
+    destLatitude: 28.450627,
+    destLongitude: -16.263045,
+
+    user: {
+      rating: 4.8,
+    },
+  });
+  // rejeitar corrida
+  const onDecline = () => {
+    setNewOrder(null);
+  };
+  // aceitar corrida
+  const onAccept = (newOrder) => {
+    setOrder(newOrder);
+    setNewOrder(null);
+  };
+  // iniciar ou terminar atividade
   const onGoPress = () => {
     setIsOnLine(!isOnLine);
   };
@@ -105,6 +132,17 @@ const HomeScreen = () => {
 
         <AntDesign name={"bars"} size={30} color="#4a4a4a" />
       </View>
+
+      {/* aparece um popup na tela para aceitar a viagem ou nao com essas informacoes */}
+      {newOrder && (
+        <NewOrderPopup
+          newOrder={newOrder}
+          duration={2}
+          distance={0.5}
+          onDecline={onDecline}
+          onAccept={() => onAccept(newOrder)}
+        />
+      )}
     </View>
   );
 };
