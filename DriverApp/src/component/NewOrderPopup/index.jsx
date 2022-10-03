@@ -6,16 +6,13 @@ import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
 import styles from "./styles";
 
-const NewOrderPopup = ({ newOrder, onAccept, onDecline, duration, distance }) => {
-  
-  // nao é necessario estar aqui, pois esta na homescreen quando aparecer a ordem de pedido para aceitar ou nao
-  // const onDecline = () => {
-  //   console.warn("on decline order");
-  // };
-  // const onAccept = () => {
-  //   console.warn("on accept order");
-  // };
-
+const NewOrderPopup = ({
+  newOrder,
+  onAccept,
+  onDecline,
+  duration,
+  distance,
+}) => {
   return (
     <View style={styles.root}>
       <Pressable onPress={onDecline} style={styles.declineButton}>

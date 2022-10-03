@@ -8,32 +8,36 @@ import MapViewDirections from "react-native-maps-directions";
 import Entypo from "react-native-vector-icons/Entypo";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
 import styles from "./styles";
 
 import NewOrderPopup from "../../component/NewOrderPopup";
 
-const origin = { latitude: 37.3318456, longitude: -122.0296002 };
+const origin = { latitude: 28.450927, longitude: -16.260845 };
 const destination = { latitude: 37.771707, longitude: -122.4053769 };
 // TODO APAGAR KEY QUANDO ENVIAR AO GITHUB 07
-const GOOGLE_MAPS_APIKEY = "AIzaSyC8yJE4NaY5LG8_Y4XcKefNnRnXG2K4Neo";
+const GOOGLE_MAPS_APIKEY = "0";
 
 const HomeScreen = () => {
   const [isOnLine, setIsOnLine] = useState(false);
-  const [order, setOrder] = useState({});
-  // pegando dados do squema 
+  // TODO nao pega posição e nao mostra tempo e duracao
+  const [myPosition, setMyPosition] = useState(null);
+  const [order, setOrder] = useState(null);
+  // pegando dados do squema
   const [newOrder, setNewOrder] = useState({
     id: "1",
     type: "UberX",
 
-    originLatitude: 28.450627,
-    originLongitude: -16.263045,
+    originLatitude: 28.450027,
+    originLongitude: -16.263845,
 
-    destLatitude: 28.450627,
-    destLongitude: -16.263045,
+    destLatitude: 28.450927,
+    destLongitude: -16.260845,
 
     user: {
       rating: 4.8,
+      name: "John",
     },
   });
   // rejeitar corrida
@@ -49,6 +53,53 @@ const HomeScreen = () => {
   const onGoPress = () => {
     setIsOnLine(!isOnLine);
   };
+  // localizacao do usuario
+  const onUserLocationChange = (event) => {
+    console.log("onUserLocationChange");
+    setMyPosition(event.coordinate);
+  };
+  // mostra que foi encontrado
+  const onDirectionFound = (e) => {
+    console.log("Direction found: ", e);
+    if (order) {
+      setOrder({
+        ...order,
+        distance: e.distance,
+        duration: e.duration,
+      });
+    }
+  };
+  // mostra se esta online ou offline
+  const renderBottomTitle = () => {
+    if (order) {
+      return (
+        <View style={{ alignItems: "center" }}>
+          <View style={{ flexDirection: "row", alignItems: "center" }}>
+            <Text>{order.duration ? order.duration.toFixed(1) : "?"} min</Text>
+            <View
+              style={{
+                backgroundColor: "#1e9203",
+                marginHorizontal: 10,
+                width: 35,
+                height: 35,
+                alignItems: "center",
+                justifyContent: "center",
+                borderRadius: 20,
+              }}
+            >
+              <FontAwesome5 name={"user-astronaut"} color={"white"} size={35} />
+            </View>
+            <Text>{order.distance ? order.distance.toFixed(1) : "?"} Km</Text>
+          </View>
+          <Text style={styles.bottomText}>Picking up {order.user.name}</Text>
+        </View>
+      );
+    }
+    if (isOnLine) {
+      return <Text style={styles.bottomText}>You're Online</Text>;
+    }
+    return <Text style={styles.bottomText}>You're Offline</Text>;
+  };
 
   return (
     <View>
@@ -57,6 +108,7 @@ const HomeScreen = () => {
         provider={PROVIDER_GOOGLE}
         // TODO nao mostra localização no mapa
         showsUserLocation={true}
+        onUserLocationChange={onUserLocationChange}
         initialRegion={{
           latitudeDelta: 0.0222,
           longitudeDelta: 0.0121,
@@ -64,11 +116,19 @@ const HomeScreen = () => {
           longitude: -16.263045,
         }}
       >
-        <MapViewDirections
-          origin={origin}
-          destination={destination}
-          apikey={GOOGLE_MAPS_APIKEY}
-        />
+        {order && (
+          <MapViewDirections
+            origin={myPosition}
+            onReady={onDirectionFound}
+            destination={{
+              latitude: order.originLatitude,
+              longitude: order.originLongitude,
+            }}
+            apikey={GOOGLE_MAPS_APIKEY}
+            strokeWidth={5}
+            strokeColor="black"
+          />
+        )}
       </MapView>
 
       {/* botao de "GO" no centro */}
@@ -123,12 +183,15 @@ const HomeScreen = () => {
       {/* botoes envolvendo texto abaixo com switch*/}
       <View style={styles.bottomContainer}>
         <Ionicons name={"options"} size={30} />
+
         {/* mostra se esta online ou offline */}
-        {isOnLine ? (
+        {/* {isOnLine ? (
           <Text style={styles.bottomText}>You're Online</Text>
         ) : (
           <Text style={styles.bottomText}>You're Offline</Text>
-        )}
+        )} */}
+
+        {renderBottomTitle()}
 
         <AntDesign name={"bars"} size={30} color="#4a4a4a" />
       </View>
