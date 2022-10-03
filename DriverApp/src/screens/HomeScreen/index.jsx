@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Dimensions, Pressable, Text, View } from "react-native";
 
 import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
@@ -17,7 +17,7 @@ import NewOrderPopup from "../../component/NewOrderPopup";
 const origin = { latitude: 28.450927, longitude: -16.260845 };
 const destination = { latitude: 37.771707, longitude: -122.4053769 };
 // TODO APAGAR KEY QUANDO ENVIAR AO GITHUB 07
-const GOOGLE_MAPS_APIKEY = "0";
+const GOOGLE_MAPS_APIKEY = "clara de ovo";
 
 const HomeScreen = () => {
   const [isOnLine, setIsOnLine] = useState(false);
@@ -66,11 +66,62 @@ const HomeScreen = () => {
         ...order,
         distance: e.distance,
         duration: e.duration,
+        pickedUp: order.pickedUp || e.distance < 0.2,
       });
     }
   };
+  //
+  const getDestination = () => {
+    if (order && order.pickedUp) {
+      return {
+        latitude: order.destLatitude,
+        longitude: order.destLongitude,
+      };
+    }
+    return {
+      latitude: order.originLatitude,
+      longitude: order.originLongitude,
+    };
+  };
+
+  // deixar cliente se distancia for baixa
+  // useEffect(() => {
+  //   if (order && order.distance && order.distance < 0.2) {
+  //     setOrder({
+  //       ...order,
+  //       pickedUp: true,
+  //     });
+  //   }
+  // }, [order]);
+
   // mostra se esta online ou offline
   const renderBottomTitle = () => {
+    // deixando cliente
+    if (order && order.pickedUp) {
+      return (
+        <View style={{ alignItems: "center" }}>
+          <View style={{ flexDirection: "row", alignItems: "center" }}>
+            <Text>{order.duration ? order.duration.toFixed(1) : "?"} min</Text>
+            <View
+              style={{
+                backgroundColor: "#d41212",
+                marginHorizontal: 10,
+                width: 35,
+                height: 35,
+                alignItems: "center",
+                justifyContent: "center",
+                borderRadius: 20,
+              }}
+            >
+              <FontAwesome5 name={"user-astronaut"} color={"white"} size={35} />
+            </View>
+            <Text>{order.distance ? order.distance.toFixed(1) : "?"} Km</Text>
+          </View>
+          <Text style={styles.bottomText}>Dropping off {order.user.name}</Text>
+        </View>
+      );
+    }
+    // pegando cliente
     if (order) {
       return (
         <View style={{ alignItems: "center" }}>
@@ -120,10 +171,7 @@ const HomeScreen = () => {
           <MapViewDirections
             origin={myPosition}
             onReady={onDirectionFound}
-            destination={{
-              latitude: order.originLatitude,
-              longitude: order.originLongitude,
-            }}
+            destination={getDestination()}
             apikey={GOOGLE_MAPS_APIKEY}
             strokeWidth={5}
             strokeColor="black"
