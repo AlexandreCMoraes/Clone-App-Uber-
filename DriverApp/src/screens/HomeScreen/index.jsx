@@ -17,7 +17,7 @@ import NewOrderPopup from "../../component/NewOrderPopup";
 const origin = { latitude: 28.450927, longitude: -16.260845 };
 const destination = { latitude: 37.771707, longitude: -122.4053769 };
 // TODO APAGAR KEY QUANDO ENVIAR AO GITHUB 07
-const GOOGLE_MAPS_APIKEY = "clara de ovo";
+const GOOGLE_MAPS_APIKEY = "pao com ovo";
 
 const HomeScreen = () => {
   const [isOnLine, setIsOnLine] = useState(false);
@@ -67,6 +67,8 @@ const HomeScreen = () => {
         distance: e.distance,
         duration: e.duration,
         pickedUp: order.pickedUp || e.distance < 0.2,
+        // termina a corrida se pegou cliente e esta a menos de "x" km
+        isFinished: order.pickedUp && e.distance < 0.2,
       });
     }
   };
@@ -96,6 +98,31 @@ const HomeScreen = () => {
 
   // mostra se esta online ou offline
   const renderBottomTitle = () => {
+    //
+    if (order && order.isFinished) {
+    // if (true) {
+      return (
+        <View style={{ alignItems: "center" }}>
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: "#cb1a1a",
+              width: 200,
+              padding: 10,
+              borderRadius: 20,
+            }}
+          >
+            <Text style={{ color: "white", fontWeight: "bold" }}>
+              COMPLETE {order.type}
+            </Text>
+          </View>
+          <Text style={styles.bottomText}>{order.user.name}</Text>
+        </View>
+      );
+    }
+
     // deixando cliente
     if (order && order.pickedUp) {
       return (
